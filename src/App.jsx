@@ -2,12 +2,13 @@ import './styles/index.css';
 import { TodosProvider } from './contexts/TodosContext';
 import TodosList from './pages/TodosList';
 import Home from './pages/Home';
-import { createBrowserRouter, Route, createRoutesFromElements, Link, Outlet, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from 'react-router-dom';
+import Navbar from './components/Navbar';
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/' element={<Root />} >
+      <Route path='/' element={<Navbar />} >
         <Route index element={<Home />} />
         <Route path='/todos-list' element={<TodosList />} />
       </Route>
@@ -25,17 +26,4 @@ function App() {
 
 export default App;
 
-const Root = () => {
 
-  return (
-    <>
-      <div>
-        <Link to={'/'}> Home </Link>
-        <Link to={'/todos-list'}> Todos List </Link>
-      </div>
-      <div>
-        <Outlet />
-      </div>
-    </>
-  )
-}
