@@ -1,23 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import TodosContext from "../contexts/TodosContext";
 import { useNavigate } from "react-router";
 
 export default function Input() {
   const [todo, setTodo] = useState({title: ''});
+  const {addTodos} = useContext(TodosContext);
   const navigate = useNavigate();
-  const todoHandler = () => {
-    fetch('https://todos-react-8c26d-default-rtdb.europe-west1.firebasedatabase.app/todos.json', {
-      method: 'POST',
-      body: JSON.stringify(todo),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(() => {
-      navigate('/todos-list')
-    });
-  }
+  
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    todoHandler();
+    addTodos(todo)
+    navigate('/todos-list')
   };
   const inputChangeHandler = (event) => {
     setTodo({title: event.target.value});
