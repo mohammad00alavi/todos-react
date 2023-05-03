@@ -1,4 +1,4 @@
-import styles from './styles/Home.module.css';
+import './styles/index.css';
 import { TodosProvider } from './contexts/TodosContext';
 import TodosList from './pages/TodosList';
 import Home from './pages/Home';
@@ -16,7 +16,7 @@ function App() {
 
   return (
     <TodosProvider>
-      <div className={styles.container}>
+      <div className={'container'}>
         <RouterProvider router={router} />
       </div>
     </TodosProvider>

@@ -25,7 +25,7 @@ export default function Input() {
   return (
     <form onSubmit={formSubmitHandler}>
       <input type='text' required value={todo.title} onChange={inputChangeHandler} placeholder="Add your todo"/>
-      <button type="submit">Submit</button>
+      <button className="btn" type="submit">Submit</button>
     </form>
   )
 }

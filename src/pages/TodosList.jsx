@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 export default function TodosList() {
   const [isLoading, setIsLoading] = useState(true);
   const [todos, setTodos] = useState([])
-
-  useEffect(()=> {
+  const fetchTodos = () => {
     fetch('https://todos-react-8c26d-default-rtdb.europe-west1.firebasedatabase.app/todos.json')
     .then(response => {
       return response.json()
@@ -21,6 +20,10 @@ export default function TodosList() {
         setTodos([]);
       }
     });
+  }
+
+  useEffect(()=> {
+    fetchTodos();
   },[])
   if (isLoading) { 
     return (
@@ -34,7 +37,7 @@ export default function TodosList() {
     <div>
       <h1>All todos</h1>
       {todos?.map(item => {
-        return <Todo key={item.id} title={item.title} todoId={item.id} />
+        return <Todo key={item.id} title={item.title} todoId={item.id} fetchTodos={fetchTodos} />
       })}
     </div>
   )
